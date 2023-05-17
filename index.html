@@ -2,8 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="author" content="Fabio Garcia">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
+
 body {
   margin: 0;
   min-width: 250px;
@@ -148,11 +151,15 @@ img{
 }
 
 </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 </head>
+
 <body style="background-color: lightblue;">
 
 <div class="imagem">
-   <img src="assado.png">
+   <img style="max-width: 150px;" src="assado.png">
 </div>
 
 <div id="myDIV" class="header">
@@ -163,15 +170,23 @@ img{
 </div>
 
 <ul id="myUL">
-  <li>Croissant</li>
+  <li>Croissant com requeijão</li>
   <li>Café com Leite Grande</li>
-  <li>Suco de laranja</li>
-  <li>Bowl de pão de queijo</li>
+  <li>Suco de Laranja</li>
+  <li>Bowl de Pão de Queijo</li>
   
  
 </ul>
+ 
 
 <script>
+   document.addEventListener("DOMContentLoaded", function() {
+      Swal.fire({
+        title: "Bem-vindo!",
+        text: "Aqui você pode adicionar ou excluir itens!",
+        icon: "info"
+      });
+    });
 // Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByTagName("LI");
 var i;
@@ -228,6 +243,17 @@ function newElement() {
   }
 }
 </script>
+<div style="padding: 5px 20px; ">
+<button style="padding: 10px;" onclick="atualizarPagina()">Limpar</button>
 
+  <script>
+    function atualizarPagina() {
+      location.reload();
+
+      var novoConteudo = "conteúdo atualizado";
+      document.getElementById("conteudo").innerHTML = novoConteudo;
+    }
+  </script>
+</div>
 </body>
 </html>

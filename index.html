@@ -4,12 +4,17 @@
 <meta charset="utf-8">
 <meta name="author" content="Fabio Garcia">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 
 body {
   margin: 0;
   min-width: 250px;
+  height: 100%;
+  background-image: url(assadofundo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
 }
 
 /* Include the padding and border in an element's total width and height */
@@ -86,7 +91,7 @@ ul li.checked::before {
 
 /* Style the header */
 .header {
-  background-color: #463358;
+  background-color: transparent;
   padding: 30px 40px;
   color: white;
   text-align: center;
@@ -150,21 +155,22 @@ img{
   background-color: #bbb;
 }
 
+
 </style>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 </head>
 
-<body style="background-color: lightblue;">
+<body>
 
 <div class="imagem">
-   <img style="max-width: 150px;" src="assado.png">
+   <img style="max-width: 150px;" src="removed.png">
 </div>
 
 <div id="myDIV" class="header">
  
-  <h2 style="margin:4px">Assado com Amor</h2>
+  <h2 style="font-size: 40px;">Assado com Amor</h2>
   <input type="text" id="myInput" placeholder="Item...">
   <span onclick="newElement()" class="addBtn">+</span>
 </div>

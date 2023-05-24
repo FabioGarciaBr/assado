@@ -194,13 +194,17 @@ img {
 </ul>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    Swal.fire({
-      title: "Bem-vindo!",
-      text: "Aqui você pode adicionar ou excluir itens!",
-      icon: "info"
-    });
-  });
+ window.onload = function() {
+            Swal.fire({
+                title: 'Bem Vindo!',
+                text: '',
+                imageUrl: 'modal.jpg',
+                imageWidth: 400,
+                imageHeight: 400,
+                imageAlt: 'Imagem',
+                cancelButtonText: 'Fechar'
+            });
+  };
 
   var myNodelist = document.getElementsByTagName("LI");
   for (var i = 0; i < myNodelist.length; i++) {

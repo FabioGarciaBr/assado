@@ -126,14 +126,19 @@ img {
   margin-left: 5%;
 }
 
+.footer {
+  display: none;
+}
+
 #myDIV {
   font-size: 40px;
 }
-@media screen and (max-width: 980px) {
-   body {
-  width: 90%;
 
+@media screen and (max-width: 980px) {
+  body {
+    width: 90%;
   }
+}
 
 @media screen and (max-width: 768px) {
   input {
@@ -153,8 +158,6 @@ img {
   #myDIV {
     font-size: 20px;
   }
- 
-  
 }
 
 @media screen and (max-width: 480px) {
@@ -168,10 +171,13 @@ img {
     font-size: 12px;
   }
 }
+
 </style>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css">
 
 </head>
 
@@ -193,19 +199,25 @@ img {
   <li>Bowl de Pão de Queijo</li>
 </ul>
 
-<script>
- window.onload = function() {
-            Swal.fire({
-                title: 'Bem Vindo!',
-                text: '',
-                imageUrl: 'modal.jpg',
-                imageWidth: 300,
-                imageHeight: 300,
-                imageAlt: 'Imagem',
-                cancelButtonText: 'Fechar'
-            });
-  };
 
+
+<script>
+window.onload = function() {
+    const videoUrl = 'video.mp4';
+
+    Swal.fire({
+        title: 'Seja Bem Vindo!',
+        html: '<div id="modalVideo" class="plyr__video-embed"><video poster="" autoplay muted><source src="' + videoUrl + '"></video></div>',
+        didOpen: function() {
+            const player = new Plyr('#modalVideo video');
+            player.play();
+        },
+        cancelButtonText: 'Fechar',
+        width: '300px' // Definindo a largura da janela
+    });
+};
+
+function addCloseButton() {
   var myNodelist = document.getElementsByTagName("LI");
   for (var i = 0; i < myNodelist.length; i++) {
     var span = document.createElement("SPAN");
@@ -214,7 +226,9 @@ img {
     span.appendChild(txt);
     myNodelist[i].appendChild(span);
   }
+}
 
+function closeListItem() {
   var close = document.getElementsByClassName("close");
   for (var i = 0; i < close.length; i++) {
     close[i].onclick = function() {
@@ -222,52 +236,53 @@ img {
       div.style.display = "none";
     };
   }
+}
 
+function toggleChecked() {
   var list = document.querySelector('ul');
   list.addEventListener('click', function(ev) {
     if (ev.target.tagName === 'LI') {
       ev.target.classList.toggle('checked');
     }
   }, false);
+}
 
-  var input = document.getElementById("myInput");
-  input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) { // Verificar se a tecla pressionada é a tecla Enter
-      event.preventDefault();
-      newElement();
-    }
-  });
-
-  function newElement() {
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-      alert("Escreva seu item aqui!");
-    } else {
-      document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("myInput").value = "";
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-    for (var i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-      };
-    }
+function handleEnterKey(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    newElement();
   }
+}
+
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Escreva seu item aqui!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  closeListItem();
+}
+
+document.getElementById("myInput").addEventListener("keyup", handleEnterKey);
+addCloseButton();
+closeListItem();
+toggleChecked();
 </script>
 
-
 <div style="padding: 4px 20px; text-align: center; ">
-  <button style="color: white; padding: 8px; width: 80%; border-radius: 10px; border: 0; cursor: pointer; background-color: rgba(0, 0, 0, 0.3); " onclick="atualizarPagina()">Recomeçar!</button>
+  <button style="padding: 8px; width: 80%; border-radius: 10px; border: 0; cursor: pointer; background-color: rgba(0, 0, 0, 0.3); " onclick="atualizarPagina()">Recomeçar!</button>
   <script>
     function atualizarPagina() {
       location.reload();

@@ -207,7 +207,7 @@ window.onload = function() {
 
     Swal.fire({
         title: 'Bem-Vindo!',
-        html: '<div id="modalVideo" class="plyr__video-embed"><video poster="" autoplay muted><source src="' + videoUrl + '"></video></div>',
+        html: '<div id="modalVideo" class="plyr__video-embed"><video poster="" autoplay muted playsinline><source src="' + videoUrl + '"></video></div>',
         didOpen: function() {
             const player = new Plyr('#modalVideo video');
             player.play();
